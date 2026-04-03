@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebNova</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f0f2f5;
+    }
+
+    header {
+      background: #212529;
+      color: #ffffff;
+      padding: 2rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    nav {
+      background: #343a40;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #17a2b8;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .section {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      color: #343a40;
+      margin-top: 0;
+    }
+
+    .example {
+      background: #e9ecef;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
+
+    .images {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .images img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #css-demo {
+      padding: 2rem;
+      margin-top: 2rem;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      transition: all 0.5s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #css-demo.active {
+      background: linear-gradient(to right, #d1c4e9, #f3e5f5);
+      transform: scale(1.03);
+      border-color: #673ab7;
+    }
+
+    .css-btn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #17a2b8;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .card-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .card-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      flex: 0 0 auto;
+      width: 250px;
+      height: 300px;
+      background-color: white;
+      background-size: cover;
+      background-position: center;
+      object-fit: contain;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      scroll-snap-align: start;
+      cursor: pointer;
+    }
+
+    /* New styles for the features */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      flex: 1;
+      min-width: 250px;
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card:nth-child(1) .feature-icon {
+      color: #4CAF50;
+    }
+
+    .feature-card:nth-child(2) .feature-icon {
+      color: #2196F3;
+    }
+
+    .feature-card:nth-child(3) .feature-icon {
+      color: #FF5722;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .tech-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tech-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+
+    .tech-card h3 {
+      margin: 0.5rem 0;
+      color: #343a40;
+    }
+
+    .tech-card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .explore-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #17a2b8;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .explore-btn:hover {
+      background: #138496;
+    }
+
+    .mission-section {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    .mission-section h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .mission-section li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .mission-section li:before {
+      content: "•";
+      color: #17a2b8;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -0.3rem;
+    }
+
+    /* Updated code example styles */
+    .code-example {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: flex-start;
+    }
+
+    .code-preview,
+    .example-code {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .code-container {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      background: #f5f5f5;
+      border-radius: 5px;
+    }
+
+    .code-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .code-content pre {
+      margin: 0;
+    }
+
+    .html-code {
+      display: block;
+    }
+
+    .css-code {
+      display: none;
+    }
+
+    .html-code.active {
+      display: block;
+    }
+
+    .css-code.active {
+      display: block;
+    }
+
+    .image-container {
+      margin-top: 60px;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: #17a2b8;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+      margin-top: 1rem;
+    }
+
+    .toggle-btn:hover {
+      background: #138496;
+    }
+
+    .example-code pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      height: 100%;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .code-example {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    WebNova
+  </header>
+
+  <nav>
+    <a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a>
+    <a href="#" class="nav-link" data-page="html">HTML</a>
+    <a href="#" class="nav-link" data-page="css">CSS</a>
+    <a href="#" class="nav-link" data-page="js">JavaScript</a>
+    <a href="#" class="nav-link" data-page="jquery">jQuery</a>
+    <a href="#" class="nav-link" data-page="ajax">AJAX</a>
+    <a href="#" class="nav-link" data-page="php">PHP</a>
+    <a href="#" class="nav-link" data-page="contact">Contact Us</a>
+  </nav>
+
+  <div class="content" id="main-content">
+    <div class="section">
+      <h2>Welcome to <strong>WebNova</strong></h2>
+      <p><strong>WebNova</strong> is your gateway to exploring the power of modern front-end web technologies. Whether
+        you're a beginner or looking to polish your skills, dive into examples and key concepts that make websites
+        interactive, beautiful, and efficient.</p>
+
+      <!-- Feature Cards -->
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Learn Interactively</h3>
+          <p>Explore concepts through interactive examples and visualizations that make learning intuitive and engaging.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Modern Techniques</h3>
+          <p>Stay updated with the latest web development practices and techniques used by industry professionals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Practical Examples</h3>
+          <p>See real-world applications and examples that demonstrate how to apply these technologies effectively.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>CSS Power Showcase</h2>
+      <div id="css-demo">
+        <p>This is a sample output area. Click the button to see CSS in action!</p>
+      </div>
+      <button class="css-btn" id="css-toggle">Transform Appearance</button>
+    </div>
+
+    <!-- Moved HTML to CSS Transformation section here -->
+    <div class="section">
+      <h2>HTML to CSS Transformation</h2>
+      <div class="code-example">
+        <div class="example-code">
+          <h3>Code:</h3>
+          <div class="code-container">
+            <div class="code-content html-code active">
+              <pre>
+    &lt;form&gt;
+      &lt;h1&gt;Registration Form&lt;/h1&gt;
+      &lt;label&gt;Name:&lt;/label&gt;
+      &lt;input type="text"&gt;&lt;br&gt;
+      &lt;label&gt;Email:&lt;/label&gt;
+      &lt;input type="email"&gt;&lt;br&gt;
+      &lt;label&gt;Phone Number:&lt;/label&gt;
+      &lt;input type="tel"&gt;&lt;br&gt;
+      &lt;label&gt;Gender:&lt;/label&gt;&lt;br&gt;
+      &lt;input type="radio" name="gender"&gt; Male&lt;br&gt;
+      &lt;input type="radio" name="gender"&gt; Female&lt;br&gt;
+      &lt;input type="radio" name="gender"&gt; Other&lt;br&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+              </pre>
+            </div>
+            <div class="code-content css-code">
+              <pre>
+    form {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #34495e;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+    
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+    }
+              </pre>
+            </div>
+          </div>
+          <button class="toggle-btn" id="toggle-output">Show CSS Styled Version</button>
+        </div>
+        <div class="code-preview">
+          <div class="image-container">
+            <img src="simpleHtml.png" alt="Basic HTML Form" id="code-output">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Explore Web Technologies</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/001/416/705/original/html5-emblem-orange-shield-and-white-text-vector.jpg"
+            alt="HTML" class="tech-icon">
+          <h3>HTML</h3>
+          <p>The backbone of web pages, providing structure and semantic meaning to content.</p>
+          <a href="#" class="explore-btn" data-page="html">Explore HTML</a>
+        </div>
+        <div class="tech-card">
+          <img src="http://blog.brakoniecki.pl/wp-content/uploads/2015/02/css-logo.png" alt="CSS" class="tech-icon">
+          <h3>CSS</h3>
+          <p>The styling language that transforms plain HTML into visually stunning designs.</p>
+          <a href="#" class="explore-btn" data-page="css">Explore CSS</a>
+        </div>
+        <div class="tech-card">
+          <img src="https://www.clipartkey.com/mpngs/m/320-3202636_javascript-logo-transparent.png" alt="JavaScript"
+            class="tech-icon">
+          <h3>JavaScript</h3>
+          <p>The programming language that brings interactivity and dynamic behavior to websites.</p>
+          <a href="#" class="explore-btn" data-page="js">Explore JavaScript</a>
+        </div>
+        <div class="tech-card">
+          <img src="https://tse1.mm.bing.net/th?id=OIP.BxNFQE_tKp5YJ8XVx9PAdgHaGQ&pid=Api&P=0&h=180" alt="jQuery"
+            class="tech-icon">
+          <h3>jQuery</h3>
+          <p>A fast and feature-rich JavaScript library that simplifies DOM manipulation.</p>
+          <a href="#" class="explore-btn" data-page="jquery">Explore jQuery</a>
+        </div>
+        <div class="tech-card">
+          <img src="https://www.w3schools.com/whatis/img_ajax.jpg" alt="AJAX" class="tech-icon">
+          <h3>AJAX</h3>
+          <p>Technology for creating fast and dynamic web applications with asynchronous data exchange.</p>
+          <a href="#" class="explore-btn" data-page="ajax">Explore AJAX</a>
+        </div>
+        <div class="tech-card">
+          <img
+            src="https://images.vexels.com/media/users/3/166470/isolated/preview/73835fa38fba6d35aff9de603dc5044a-php-programming-language-icon-by-vexels.png"
+            alt="PHP" class="tech-icon">
+          <h3>PHP</h3>
+          <p>A powerful server-side scripting language for creating dynamic and interactive websites.</p>
+          <a href="#" class="explore-btn" data-page="php">Explore PHP</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section mission-section">
+      <h2>Our Mission</h2>
+      <p>At WebNova, we believe that understanding web technologies is essential in today's digital world. Our platform
+        is designed to showcase the power and potential of modern web design and development tools.</p>
+      <p>We strive to make learning web technologies accessible, engaging, and practical for everyone from beginners to
+        experienced developers.</p>
+      <ul>
+        <li>Comprehensive guides to web technologies</li>
+        <li>Interactive examples that demonstrate concepts</li>
+        <li>Real-world applications and case studies</li>
+        <li>Best practices and modern techniques</li>
+        <li>Community-driven learning and support</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const pages = {
+      home: `
+        <div class="section">
+          <h2>Welcome to <strong>WebNova</strong></h2>
+          <p><strong>WebNova</strong> is your gateway to exploring the power of modern front-end web technologies. Whether you're a beginner or looking to polish your skills, dive into examples and key concepts that make websites interactive, beautiful, and efficient.</p>
+          
+          <div class="features">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h3>Learn Interactively</h3>
+              <p>Explore concepts through interactive examples and visualizations that make learning intuitive and engaging.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3>Modern Techniques</h3>
+              <p>Stay updated with the latest web development practices and techniques used by industry professionals.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h3>Practical Examples</h3>
+              <p>See real-world applications and examples that demonstrate how to apply these technologies effectively.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2>CSS Power Showcase</h2>
+          <div id="css-demo">
+            <p>This is a sample output area. Click the button to see CSS in action!</p>
+          </div>
+          <button class="css-btn" id="css-toggle">Transform Appearance</button>
+        </div>
+        
+        <div class="section">
+      <h2>HTML to CSS Transformation</h2>
+      <div class="code-example">
+        <div class="example-code">
+          <h3>Code:</h3>
+          <div class="code-container">
+            <div class="code-content html-code active">
+              <pre>
+    &lt;form&gt;
+      &lt;h1&gt;Registration Form&lt;/h1&gt;
+      &lt;label&gt;Name:&lt;/label&gt;
+      &lt;input type="text"&gt;&lt;br&gt;
+      &lt;label&gt;Email:&lt;/label&gt;
+      &lt;input type="email"&gt;&lt;br&gt;
+      &lt;label&gt;Phone Number:&lt;/label&gt;
+      &lt;input type="tel"&gt;&lt;br&gt;
+      &lt;label&gt;Gender:&lt;/label&gt;&lt;br&gt;
+      &lt;input type="radio" name="gender"&gt; Male&lt;br&gt;
+      &lt;input type="radio" name="gender"&gt; Female&lt;br&gt;
+      &lt;input type="radio" name="gender"&gt; Other&lt;br&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+              </pre>
+            </div>
+            <div class="code-content css-code">
+              <pre>
+    form {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #34495e;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+    
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+    }
+              </pre>
+            </div>
+          </div>
+          <button class="toggle-btn" id="toggle-output">Show CSS Styled Version</button>
+        </div>
+        <div class="code-preview">
+          <div class="image-container">
+            <img src="simpleHtml.png" alt="Basic HTML Form" id="code-output">
+          </div>
+        </div>
+      </div>
+    </div>
+        
+        <div class="section">
+          <h2>Explore Web Technologies</h2>
+          <div class="tech-grid">
+            <div class="tech-card">
+              <img src="https://static.vecteezy.com/system/resources/previews/001/416/705/original/html5-emblem-orange-shield-and-white-text-vector.jpg" alt="HTML" class="tech-icon">
+              <h3>HTML</h3>
+              <p>The backbone of web pages, providing structure and semantic meaning to content.</p>
+              <a href="#" class="explore-btn" data-page="html">Explore HTML</a>
+            </div>
+            <div class="tech-card">
+              <img src="http://blog.brakoniecki.pl/wp-content/uploads/2015/02/css-logo.png" alt="CSS" class="tech-icon">
+              <h3>CSS</h3>
+              <p>The styling language that transforms plain HTML into visually stunning designs.</p>
+              <a href="#" class="explore-btn" data-page="css">Explore CSS</a>
+            </div>
+            <div class="tech-card">
+              <img src="https://www.clipartkey.com/mpngs/m/320-3202636_javascript-logo-transparent.png" alt="JavaScript" class="tech-icon">
+              <h3>JavaScript</h3>
+              <p>The programming language that brings interactivity and dynamic behavior to websites.</p>
+              <a href="#" class="explore-btn" data-page="js">Explore JavaScript</a>
+            </div>
+            <div class="tech-card">
+              <img src="https://tse1.mm.bing.net/th?id=OIP.BxNFQE_tKp5YJ8XVx9PAdgHaGQ&pid=Api&P=0&h=180" alt="jQuery" class="tech-icon">
+              <h3>jQuery</h3>
+              <p>A fast and feature-rich JavaScript library that simplifies DOM manipulation.</p>
+              <a href="#" class="explore-btn" data-page="jquery">Explore jQuery</a>
+            </div>
+            <div class="tech-card">
+              <img src="https://www.w3schools.com/whatis/img_ajax.jpg" alt="AJAX" class="tech-icon">
+              <h3>AJAX</h3>
+              <p>Technology for creating fast and dynamic web applications with asynchronous data exchange.</p>
+              <a href="#" class="explore-btn" data-page="ajax">Explore AJAX</a>
+            </div>
+            <div class="tech-card">
+              <img src="https://images.vexels.com/media/users/3/166470/isolated/preview/73835fa38fba6d35aff9de603dc5044a-php-programming-language-icon-by-vexels.png" alt="PHP" class="tech-icon">
+              <h3>PHP</h3>
+              <p>A powerful server-side scripting language for creating dynamic and interactive websites.</p>
+              <a href="#" class="explore-btn" data-page="php">Explore PHP</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section mission-section">
+          <h2>Our Mission</h2>
+          <p>At WebNova, we believe that understanding web technologies is essential in today's digital world. Our platform is designed to showcase the power and potential of modern web design and development tools.</p>
+          <p>We strive to make learning web technologies accessible, engaging, and practical for everyone from beginners to experienced developers.</p>
+          <ul>
+            <li>Comprehensive guides to web technologies</li>
+            <li>Interactive examples that demonstrate concepts</li>
+            <li>Real-world applications and case studies</li>
+            <li>Best practices and modern techniques</li>
+            <li>Community-driven learning and support</li>
+          </ul>
+        </div>
+      `,
+      html: `
+        <div class="section">
+          <h2>HTML - Structure of the Web</h2>
+          <p>HTML provides the skeleton of a webpage using tags and elements.</p>
+          <div class="example">
+            <pre>&lt;h1&gt;Hello World&lt;/h1&gt;</pre>
+          </div>
+        </div>
+      `,
+      css: `
+        <div class="section">
+          <h2>CSS - Styling the Web</h2>
+          <p>CSS enhances the appearance of HTML elements through styling rules.</p>
+          <div class="example">
+            <pre>h1 { color: blue; font-size: 2rem; }</pre>
+          </div>
+        </div>
+      `,
+      js: `
+        <div class="section">
+          <h2>JavaScript - Web Interactivity</h2>
+          <p>JS brings interactivity to your webpage with logic and events.</p>
+          <div class="example">
+            <pre>document.querySelector('h1').addEventListener('click', () => alert('Clicked!'));</pre>
+          </div>
+        </div>
+      `,
+      jquery: `
+        <div class="section">
+          <h2>jQuery - Simplified JavaScript</h2>
+          <p>jQuery makes JavaScript coding more concise and browser-compatible.</p>
+          <div class="example">
+            <pre>$("h1").click(function() { alert("Hello with jQuery!"); });</pre>
+          </div>
+        </div>
+      `,
+      ajax: `
+        <div class="section">
+          <h2>AJAX - Asynchronous Data Loading</h2>
+          <p>AJAX enables fetching data in the background without reloading the page.</p>
+          <div class="example">
+            <pre>
+$.ajax({
+  url: "https://jsonplaceholder.typicode.com/posts/1",
+  success: function(result) {
+    alert(result.title);
+  }
+});
+            </pre>
+          </div>
+        </div>
+      `,
+      php: `
+        <div class="section">
+          <h2>PHP - Server-Side Power</h2>
+          <p>PHP is a popular server-side scripting language designed for web development. It can dynamically generate content, handle forms, manage sessions, and interact with databases.</p>
+          <div class="example">
+            <pre>
+&lt;?php
+  $greeting = "Hello, World!";
+  echo $greeting;
+?&gt;
+            </pre>
+          </div>
+        </div>
+      `,
+      contact: `
+        <div class="section">
+          <h2>Contact Us</h2>
+          <p>Have questions or feedback? We'd love to hear from you!</p>
+          <form>
+            <label>Name:<br><input type="text" name="name" style="width:100%; margin-bottom:10px;"></label><br>
+            <label>Email:<br><input type="email" name="email" style="width:100%; margin-bottom:10px;"></label><br>
+            <label>Message:<br><textarea name="message" rows="5" style="width:100%;"></textarea></label><br><br>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      `
+    };
+
+    $(document).ready(function () {
+      // Navigation
+      $('.nav-link').click(function (e) {
+        e.preventDefault();
+        const page = $(this).data('page');
+        $('#main-content').html(pages[page]);
+      });
+
+      // Explore buttons
+      $(document).on('click', '.explore-btn', function (e) {
+        e.preventDefault();
+        const page = $(this).data('page');
+        $('#main-content').html(pages[page]);
+      });
+
+      // CSS Demo toggle
+      $('#css-toggle').click(function () {
+        $('#css-demo').toggleClass('active');
+      });
+
+      // HTML/CSS toggle
+      let isHTML = true;
+      $('#toggle-output').click(function () {
+        if (isHTML) {
+          $('.html-code').removeClass('active');
+          $('.css-code').addClass('active');
+          $('#code-output').attr('src', 'cssform.png');
+          $(this).text('Show HTML Version');
+        } else {
+          $('.css-code').removeClass('active');
+          $('.html-code').addClass('active');
+          $('#code-output').attr('src', 'simpleHtml.png');
+          $(this).text('Show CSS Styled Version');
+        }
+        isHTML = !isHTML;
+      });
+
+      // Card click navigation
+      $('.card').click(function () {
+        const page = $(this).data('page');
+        $('#main-content').html(pages[page]);
+      });
+    });
+
+    // Handle home navigation
+    $(document).on('click', '.nav-link[data-page="home"]', function () {
+      $('#main-content').html(pages['home']);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="section">
+  <h2>AJAX - Asynchronous Data Loading</h2>
+  <p>AJAX enables fetching data in the background without reloading the page.</p>
+  <div class="example">
+    <pre>
+$.ajax({
+  url: "https://jsonplaceholder.typicode.com/posts/1",
+  success: function(result) {
+    alert(result.title);  // Alert user with the title of the post
+  }
+});
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Click the button below to see the AJAX example in action.</p>
+    <button id="ajaxButton">Load Post Title</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Concept of AJAX</h2>
+  <p>AJAX stands for Asynchronous JavaScript and XML. It allows web pages to update data without reloading the whole page.</p>
+  <div class="example">
+    <pre>
+  // Basic AJAX call with callback
+  $.ajax({
+    url: "https://jsonplaceholder.typicode.com/posts/1",
+    success: function(result) {
+      console.log("Title:", result.title);
+    }
+  });
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Click the button to log the title of the post in the console.</p>
+    <button id="conceptButton">Log Title to Console</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Using XMLHttpRequest</h2>
+  <p>AJAX can also be used with the native <code>XMLHttpRequest</code> object for making requests.</p>
+  <div class="example">
+    <pre>
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1', true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      console.log("Title:", response.title);
+    }
+  };
+  xhr.send();
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Click the button below to log the title of the post fetched using XMLHttpRequest.</p>
+    <button id="xhrButton">Log Title Using XMLHttpRequest</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Sending Data Using GET Method</h2>
+  <p>With AJAX, data can be sent via the GET method by appending parameters to the URL.</p>
+  <div class="example">
+    <pre>
+  $.ajax({
+    url: "https://jsonplaceholder.typicode.com/posts",
+    type: "GET",
+    data: { userId: 1 },
+    success: function(response) {
+      console.log(response);
+    }
+  });
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Click the button below to fetch posts by user ID 1 using the GET method.</p>
+    <button id="getButton">Fetch Posts (GET)</button>
+    <p id="getOutput"></p>  <!-- For displaying output -->
+  </div>
+</div>
+
+<div class="section">
+  <h2>Sending Data Using POST Method</h2>
+  <p>With AJAX, data can also be sent using the POST method to create or update resources.</p>
+  <div class="example">
+    <pre>
+  $.ajax({
+    url: "https://jsonplaceholder.typicode.com/posts",
+    type: "POST",
+    data: {
+      title: "New Post",
+      body: "This is a new post created using AJAX.",
+      userId: 1
+    },
+    success: function(response) {
+      console.log("New Post Created:", response);
+    }
+  });
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Click the button to create a new post using the POST method.</p>
+    <button id="postButton">Create New Post (POST)</button>
+    <p id="postOutput"></p>  <!-- For displaying output -->
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+  // AJAX Button: Fetch post title
+  $('#ajaxButton').click(function () {
+    $.ajax({
+      url: "https://jsonplaceholder.typicode.com/posts/1",
+      success: function (result) {
+        alert("Title: " + result.title);
+      }
+    });
+  });
+
+  // Concept Button: Log title to console using AJAX
+  $('#conceptButton').click(function () {
+    $.ajax({
+      url: "https://jsonplaceholder.typicode.com/posts/1",
+      success: function (result) {
+        console.log("Title: " + result.title);
+      }
+    });
+  });
+
+  // XHR Button: Log title to console using XMLHttpRequest
+  $('#xhrButton').click(function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1', true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        console.log("Title: " + response.title);
+      }
+    };
+    xhr.send();
+  });
+
+  // GET Button: Fetch posts using GET method
+  $('#getButton').click(function () {
+    $.ajax({
+      url: "https://jsonplaceholder.typicode.com/posts",
+      type: "GET",
+      data: { userId: 1 },
+      success: function (response) {
+        console.log("Fetched " + response.length + " posts.");  // Log the posts in console
+        alert("Fetched " + response.length + " posts.");
+        $('#getOutput').text("Fetched " + response.length + " posts.");
+      }
+    });
+  });
+
+  // POST Button: Create new post using POST method
+  $('#postButton').click(function () {
+    $.ajax({
+      url: "https://jsonplaceholder.typicode.com/posts",
+      type: "POST",
+      data: {
+        title: "New Post",
+        body: "This is a new post created using AJAX.",
+        userId: 1
+      },
+      success: function (response) {
+        console.log("New Post Created:", response);  // Log the newly created post in console
+        alert("New Post Created: " + response.title);
+        $('#postOutput').text("New Post Created: " + response.title);
+      }
+    });
+  });
+});
+</script>

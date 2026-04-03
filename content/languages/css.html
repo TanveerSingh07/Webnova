@@ -1,0 +1,94 @@
+<div class="section">
+    <h2>CSS - Styling the Web</h2>
+    <p>CSS enhances the appearance of HTML elements through styling rules.</p>
+    <div class="example">
+      <pre>h1 { color: blue; font-size: 2rem; }</pre>
+    </div>
+    <div class="output">
+      <h3>Output:</h3>
+      <h1 style="color: blue;font-size: 2rem;">Hello World</h1>
+    </div>
+</div>
+
+<div class="section">
+    <h2>CSS - Flexbox</h2>
+    <p>Flexbox provides a way to align and distribute space among items in a container, even when their sizes are unknown or dynamic.</p>
+    <div class="example">
+      <pre> 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+      </pre>
+    </div>
+    <div class="output">
+      <h3>Output:</h3>
+      <div class="container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+      </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>CSS - Grid Layout</h2>
+    <p>CSS Grid Layout enables a two-dimensional layout system for web pages, allowing you to create complex layouts easily.</p>
+    <div class="example">
+      <pre>
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+      </pre>
+    </div>
+    <div class="output">
+      <h3>Output:</h3>
+      <div class="container grid">
+        <div class="box">Item 1</div>
+        <div class="box">Item 2</div>
+        <div class="box">Item 3</div>
+        <div class="box">Item 4</div>
+      </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>CSS - Animations</h2>
+    <p>CSS animations allow elements to gradually change from one style to another, providing smooth transitions and effects.</p>
+    <div class="example">
+      <pre>
+@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(100px); }
+}
+
+.box {
+  animation: slide 2s infinite;
+}
+      </pre>
+    </div>
+    <div class="output">
+      <h3>Output:</h3>
+      <div class="box animated-box">Animated Box</div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>CSS - Canvas</h2>
+    <p>The <code>&lt;canvas&gt;</code> element is used to draw graphics via scripting (usually JavaScript). CSS can be used to style the canvas element itself.</p>
+    <div class="example">
+      <pre>
+canvas {
+  border: 2px solid #212529;
+  background-color: #f8f9fa;
+}
+      </pre>
+    </div>
+    <div class="output">
+      <h3>Output:</h3>
+      <canvas id="myCanvas" width="300" height="200"></canvas>
+    </div>
+</div>

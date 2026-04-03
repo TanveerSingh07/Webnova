@@ -1,0 +1,127 @@
+<div class="section">
+  <h2>JavaScript - Web Interactivity</h2>
+  <p>JS brings interactivity by responding to events like clicks or actions on the page.</p>
+  <div class="example">
+    <pre>h1 { cursor: pointer; }</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <h1 style="cursor:pointer;">Hover Over Me</h1>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Manipulating the DOM</h2>
+  <p>JavaScript can dynamically change HTML content.</p>
+  <div class="example">
+    <pre>document.getElementById('demo').textContent = 'Hello, JavaScript!';</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p id="demo">Original Text</p>
+    <button onclick="document.getElementById('demo').textContent='Hello, JavaScript!'" 
+      style="background-color:#212529; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+      Change Text
+    </button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Event Handling</h2>
+  <p>Respond to user actions like clicks or keypresses.</p>
+  <div class="example">
+    <pre>button.addEventListener('click', () => alert('Button clicked!'));</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <button id="eventBtn"
+      style="background-color:#212529; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+      Click Me
+    </button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Box Color Change</h2>
+  <p>Change element styles dynamically.</p>
+  <div class="example">
+    <pre>box.style.backgroundColor = 'tomato';</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <div id="colorBox" 
+      style="width:100px; height:100px; background-color:#212529; margin:auto; border-radius:8px;"></div>
+    <button onclick="document.getElementById('colorBox').style.backgroundColor='tomato';"
+      style="margin-top:10px; background-color:#212529; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+      Change Color
+    </button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Simple Counter</h2>
+  <p>Build a counter using JavaScript.</p>
+  <div class="example">
+    <pre>
+let count = 0;
+button.addEventListener('click', () => {
+  count++;
+  display.textContent = count;
+});</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p id="counterDisplay">0</p>
+    <button id="counterBtn"
+      style="background-color:#212529; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+      Increment
+    </button>
+  </div>
+</div>
+
+<script>
+  // This function will initialize or re-run JavaScript functionality
+  function initializeJavaScriptTab() {
+    // Event Handling button
+    document.getElementById('eventBtn').addEventListener('click', () => {
+      alert('Button clicked!');
+    });
+
+    // Counter functionality
+    let count = 0;
+    document.getElementById('counterBtn').addEventListener('click', () => {
+      count++;
+      document.getElementById('counterDisplay').textContent = count;
+    });
+
+    // Change color functionality
+    document.querySelector('button[onclick="document.getElementById(\'colorBox\').style.backgroundColor=\'tomato\';"]')
+      .addEventListener('click', () => {
+        document.getElementById('colorBox').style.backgroundColor = 'tomato';
+      });
+  }
+
+  // Re-run JavaScript functionality every time the JavaScript tab is activated
+  $(document).ready(function () {
+    // Tab Switching Logic
+    $('.tab').click(function () {
+      var target = $(this).data('target');
+
+      // Show the targeted tab and hide others
+      $('.tab-content').removeClass('active');
+      $(target).addClass('active');
+
+      // Re-run JavaScript functionality when JavaScript tab is shown
+      if (target === '#javascriptTab') {
+        initializeJavaScriptTab();
+      }
+    });
+
+    // Initially, activate the first tab (you can adjust this according to your needs)
+    $('.tab').first().addClass('active');
+    $('.tab-content').first().addClass('active');
+
+    // Initialize JavaScript functionality when page loads (for the first time)
+    initializeJavaScriptTab();
+  });
+</script>

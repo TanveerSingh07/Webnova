@@ -1,0 +1,135 @@
+<div class="section">
+  <h2>PHP - Server-Side Power</h2>
+  <p>PHP is a popular server-side scripting language designed for web development. It can dynamically generate content, handle forms, manage sessions, and interact with databases.</p>
+  <div class="example">
+    <pre>
+&lt;?php
+$greeting = "Hello, World!";
+echo $greeting;
+?&gt;
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Hello, World!</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Introduction to PHP and Variables</h2>
+  <p>PHP code is written between <code>&lt;?php ?&gt;</code> tags. Variables in PHP start with a <code>$</code> sign.</p>
+  <div class="example">
+    <pre>
+&lt;?php
+$name = "Alice";
+$age = 25;
+echo "Name: $name, Age: $age";
+?&gt;
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Name: Alice, Age: 25</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Control Flow in PHP</h2>
+  <p>PHP supports control structures like if-else and loops.</p>
+  <div class="example">
+    <pre>
+&lt;?php
+$score = 85;
+if ($score &gt;= 50) {
+  echo "Pass";
+} else {
+  echo "Fail";
+}
+?&gt;
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Pass</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Working with Arrays</h2>
+  <p>Arrays store multiple values. Use loops to iterate over them.</p>
+  <div class="example">
+    <pre>
+&lt;?php
+$colors = ["red", "green", "blue"];
+foreach ($colors as $color) {
+  echo $color . " ";
+}
+?&gt;
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>red green blue</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Functions and Object-Oriented PHP</h2>
+  <p>PHP supports both user-defined functions and OOP with classes and objects.</p>
+  <div class="example">
+    <pre>
+&lt;?php
+function greet($name) {
+  return "Hello, $name!";
+}
+class Person {
+  public $name;
+  function __construct($name) {
+    $this-&gt;name = $name;
+  }
+}
+echo greet("Alice");
+$person = new Person("Bob");
+echo $person-&gt;name;
+?&gt;
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Hello, Alice! Bob</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Using PHP with MySQL</h2>
+  <p>PHP can connect to MySQL to perform database operations.</p>
+  <div class="example">
+    <pre>
+&lt;?php
+$conn = mysqli_connect("localhost", "root", "", "testdb");
+if ($conn) {
+  echo "Connected to DB";
+} else {
+  echo "Connection failed";
+}
+?&gt;
+    </pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p>Connected to DB</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Advantages of PHP Frameworks & CodeIgniter</h2>
+  <p>Frameworks like CodeIgniter speed up development with prebuilt libraries and MVC structure.</p>
+  <div class="example">
+    <pre>
+- Fast development
+- Built-in libraries
+- MVC pattern
+- Lightweight & secure
+    </pre>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Dynamically include script.js -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const scripts = document.querySelectorAll('#main-content script');
+    scripts.forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.text = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
+
+<div class="section">
+  <h2>jQuery - Simplified JavaScript</h2>
+  <p>jQuery makes JavaScript coding more concise and browser-compatible, offering easy-to-use functions and effects.</p>
+  <div class="example">
+    <pre>$("p.intro").css("font-weight", "bold");</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p class="intro">This introductory paragraph is now bold using jQuery.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Selectors</h2>
+  <p>jQuery selectors allow you to easily select and manipulate HTML elements.</p>
+  <div class="example">
+    <pre>$(".highlight").css("background-color", "#f9c74f");</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <p class="highlight">This paragraph will be highlighted.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Handling Events</h2>
+  <p>jQuery simplifies event handling like click, hover, and keypress.</p>
+  <div class="example">
+    <pre>$("#clickMe").click(function() { $(this).text("Clicked!"); });</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <button id="clickMe">Click Me</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Special Effects</h2>
+  <p>jQuery provides effects like hide, show, fade, and slide to create dynamic pages.</p>
+  <div class="example">
+    <pre>$("#box").fadeOut(1000);</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <div id="box" style="width:100px; height:100px; background:#3498db; margin:auto;"></div>
+    <button id="fadeBtn">Fade Out Box</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Manipulating DOM</h2>
+  <p>jQuery can easily add, remove, or change HTML elements and content.</p>
+  <div class="example">
+    <pre>$("#addText").append("&lt;p&gt;New paragraph added!&lt;/p&gt;");</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <div id="addText">
+      <p>Original content.</p>
+    </div>
+    <button id="addPara">Add Paragraph</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Plugins & Slider Example</h2>
+  <p>jQuery supports many plugins, including sliders for interactive content.</p>
+  <div class="example">
+    <pre>$("#slider").slideUp().slideDown();</pre>
+  </div>
+  <div class="output">
+    <h3>Output:</h3>
+    <div id="slider" style="width:300px; height:150px; background:#212529; color:white; display:flex; align-items:center; justify-content:center; margin:auto;">Slider Content</div>
+    <button id="toggleSlider">Toggle Slider</button>
+  </div>
+</div>
+
+<!-- Include script.js dynamically to execute jQuery-specific actions -->
+<script>
+  $(document).ready(function () {
+    // Hover effect
+    $("h1").hover(function () {
+      $(this).css("color", "#3498db");
+    });
+
+    // Bold intro text
+    $("p.intro").css("font-weight", "bold");
+
+    // Highlight text effect
+    $(".highlight").css("background-color", "#f9c74f");
+
+    // Click event for button
+    $("#clickMe").click(function () {
+      $(this).text("Clicked!");
+    });
+
+    // Fade effect for box
+    $("#fadeBtn").click(function () {
+      $("#box").fadeOut(1000);
+    });
+
+    // Append new paragraph
+    $("#addPara").click(function () {
+      $("#addText").append("<p>New paragraph added!</p>");
+    });
+
+    // Toggle slider visibility
+    $("#toggleSlider").click(function () {
+      $("#slider").slideToggle();
+    });
+  });
+</script>
